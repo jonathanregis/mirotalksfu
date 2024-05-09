@@ -440,7 +440,7 @@ module.exports = {
             ],
         },
         // WebRtcServerOptions
-        webRtcServerActive: false,
+        webRtcServerActive: true,
         webRtcServerOptions: {
             listenInfos: [
                 // { protocol: 'udp', ip: '0.0.0.0', announcedAddress: IPv4, port: 40000 },
