@@ -248,13 +248,13 @@ module.exports = {
         */
         brand: {
             app: {
-                name: 'MiroTalk SFU',
-                title: 'MiroTalk SFU<br />Free browser based Real-time video calls.<br />Simple, Secure, Fast.',
+                name: 'Makanisi',
+                title: 'Cercles de paroles',
                 description:
                     'Start your next video call with a single click. No download, plug-in, or login is required. Just get straight to talking, messaging, and sharing your screen.',
             },
             site: {
-                title: 'MiroTalk SFU, Free Video Calls, Messaging and Screen Sharing',
+                title: 'Makanisi, cercles de paroles',
                 icon: '../images/logo.svg',
                 appleTouchIcon: '../images/logo.svg',
             },
@@ -266,7 +266,7 @@ module.exports = {
             },
             og: {
                 type: 'app-webrtc',
-                siteName: 'MiroTalk SFU',
+                siteName: 'Makanisi',
                 title: 'Click the link to make a call.',
                 description: 'MiroTalk SFU calling provides real-time video calls, messaging and screen sharing.',
                 image: 'https://sfu.mirotalk.com/images/mirotalksfu.png',
@@ -300,7 +300,7 @@ module.exports = {
                 whiteboardButton: true,
                 emojiRoomButton: true,
                 settingsButton: true,
-                aboutButton: true, // Please keep me always visible, thank you!
+                aboutButton: false, // Please keep me always visible, thank you!
                 exitButton: true,
             },
             settings: {

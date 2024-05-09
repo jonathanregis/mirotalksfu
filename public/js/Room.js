@@ -2621,7 +2621,7 @@ function handleRoomClientEvents() {
         hide(startVideoButton);
         show(stopVideoButton);
         setVideoButtonsDisabled(false);
-        isVideoPrivacyActive = false;
+        isVideoPrivacyActive = true;
     });
     rc.on(RoomClient.EVENTS.stopVideo, () => {
         console.log('Room event: Client stop video');

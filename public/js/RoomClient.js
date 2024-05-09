@@ -1166,7 +1166,9 @@ class RoomClient {
         }
 
         const videoPrivacyBtn = this.getId(this.peer_id + '__vp');
-        if (videoPrivacyBtn) videoPrivacyBtn.style.display = screen ? 'none' : 'inline';
+        if (videoPrivacyBtn) {
+            videoPrivacyBtn.style.display = screen ? 'none' : 'inline';
+        }
 
         console.log(`Media constraints ${type}:`, mediaConstraints);
 
@@ -1737,7 +1739,7 @@ class RoomClient {
                 elem.volume = 0;
                 elem.poster = image.poster;
                 elem.style.objectFit = isScreen || isBroadcastingEnabled ? 'contain' : 'var(--videoObjFit)';
-                elem.className = this.isMobileDevice || isScreen ? '' : 'mirror';
+                elem.className = this.isMobileDevice || isScreen ? 'videoCircle' : 'mirror videoCircle';
                 vb = document.createElement('div');
                 vb.setAttribute('id', this.peer_id + '__vb');
                 vb.className = 'videoMenuBar fadein';
@@ -1755,6 +1757,7 @@ class RoomClient {
                 pn.className = html.pin;
                 vp = document.createElement('button');
                 vp.id = this.peer_id + +'__vp';
+                vp.style.display = "none";
                 vp.className = html.videoPrivacy;
                 au = document.createElement('button');
                 au.id = this.peer_id + '__audio';
@@ -2113,7 +2116,7 @@ class RoomClient {
                 elem.setAttribute('playsinline', true);
                 elem.controls = isVideoControlsOn;
                 elem.autoplay = true;
-                elem.className = '';
+                elem.className = 'videoCircle';
                 elem.poster = image.poster;
                 elem.style.objectFit = remoteIsScreen || isBroadcastingEnabled ? 'contain' : 'var(--videoObjFit)';
                 vb = document.createElement('div');

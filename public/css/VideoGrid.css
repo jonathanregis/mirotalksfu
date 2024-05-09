@@ -42,8 +42,6 @@
     display: inline-block;
     background: transparent;
     border-radius: 10px;
-    border: var(--border);
-    box-shadow: var(--box-shadow);
     animation: show 0.4s ease;
 }
 
