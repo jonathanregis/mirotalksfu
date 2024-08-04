@@ -1739,7 +1739,7 @@ class RoomClient {
                 elem.volume = 0;
                 elem.poster = image.poster;
                 elem.style.objectFit = isScreen || isBroadcastingEnabled ? 'contain' : 'var(--videoObjFit)';
-                elem.className = this.isMobileDevice || isScreen ? 'videoCircle' : 'mirror videoCircle';
+                elem.className = isScreen ? '' : 'mirror videoCircle';
                 vb = document.createElement('div');
                 vb.setAttribute('id', this.peer_id + '__vb');
                 vb.className = 'videoMenuBar fadein';
@@ -2092,7 +2092,7 @@ class RoomClient {
 
     handleConsumer(id, type, stream, peer_name, peer_info) {
         let elem, vb, d, p, i, cm, au, pip, fs, ts, sf, sm, sv, gl, ban, ko, pb, pm, pv, pn;
-
+        let isScreen = type === mediaType.screen;
         let eDiv, eBtn, eVc; // expand buttons
 
         console.log('PEER-INFO', peer_info);
@@ -2116,7 +2116,7 @@ class RoomClient {
                 elem.setAttribute('playsinline', true);
                 elem.controls = isVideoControlsOn;
                 elem.autoplay = true;
-                elem.className = 'videoCircle';
+                elem.className = isScreen ? '' :'videoCircle';
                 elem.poster = image.poster;
                 elem.style.objectFit = remoteIsScreen || isBroadcastingEnabled ? 'contain' : 'var(--videoObjFit)';
                 vb = document.createElement('div');

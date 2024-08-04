@@ -239,8 +239,8 @@ module.exports = {
             Upon leaving the room, users who either opt out of providing feedback or if the survey is disabled 
             will be redirected to a specified URL. If enabled false the default '/newroom' URL will be used.
         */
-        enabled: false,
-        url: '',
+        enabled: true,
+        url: 'https://makanisi.com',
     },
     ui: {
         /*
