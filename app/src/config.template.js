@@ -448,13 +448,13 @@ module.exports = {
                 {
                     protocol: 'udp',
                     ip: '0.0.0.0',
-                    announcedAddress: "35.245.182.80",
+                    announcedAddress: "34.48.180.56",
                     portRange: { min: 40000, max: 40000 + numWorkers },
                 },
                 {
                     protocol: 'tcp',
                     ip: '0.0.0.0',
-                    announcedAddress: "35.245.182.80",
+                    announcedAddress: "34.48.180.56",
                     portRange: { min: 40000, max: 40000 + numWorkers },
                 },
             ],
@@ -467,13 +467,13 @@ module.exports = {
                 {
                     protocol: 'udp',
                     ip: '0.0.0.0',
-                    announcedAddress: "35.245.182.80",
+                    announcedAddress: "34.48.180.56",
                     portRange: { min: 40000, max: 40100 },
                 },
                 {
                     protocol: 'tcp',
                     ip: '0.0.0.0',
-                    announcedAddress: "35.245.182.80",
+                    announcedAddress: "34.48.180.56",
                     portRange: { min: 40000, max: 40100 },
                 },
             ],
