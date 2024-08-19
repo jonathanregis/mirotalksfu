@@ -92,15 +92,15 @@ function resetZoom() {
 function setWidth(Cameras, width, bigWidth, margin, maxHeight, isOneVideoElement) {
     ratio = customRatio ? 0.68 : ratio;
     for (let s = 0; s < Cameras.length; s++) {
-        Cameras[s].style.width = width + 'px';
-        Cameras[s].style.margin = margin + 'px';
-        Cameras[s].style.height = width * ratio + 'px';
-        if (isOneVideoElement) {
-            Cameras[s].style.width = bigWidth + 'px';
-            Cameras[s].style.height = bigWidth * ratio + 'px';
-            let camHeigh = Cameras[s].style.height.substring(0, Cameras[s].style.height.length - 2);
-            if (camHeigh >= maxHeight) Cameras[s].style.height = maxHeight - 2 + 'px';
-        }
+        // Cameras[s].style.width = width + 'px';
+        // Cameras[s].style.margin = margin + 'px';
+        // Cameras[s].style.height = width * ratio + 'px';
+        // if (isOneVideoElement) {
+        //     Cameras[s].style.width = bigWidth + 'px';
+        //     Cameras[s].style.height = bigWidth * ratio + 'px';
+        //     let camHeigh = Cameras[s].style.height.substring(0, Cameras[s].style.height.length - 2);
+        //     if (camHeigh >= maxHeight) Cameras[s].style.height = maxHeight - 2 + 'px';
+        // }
     }
 }
 
