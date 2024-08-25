@@ -254,7 +254,7 @@ body {
     z-index: 7;
     position: absolute;
     right: 0;
-    bottom: -25px;
+    bottom: 0px;
     color: #fff;
     font-size: 10px;
     display: flex;
