@@ -3776,21 +3776,48 @@ function setTheme() {
     selectTheme.selectedIndex = localStorageSettings.theme;
     const theme = selectTheme.value;
     switch (theme) {
+        // case 'dark':
+        //     swalBackground = 'radial-gradient(#393939, #000000)';
+        //     document.documentElement.style.setProperty('--body-bg', 'radial-gradient(#393939, #000000)');
+        //     document.documentElement.style.setProperty('--transcription-bg', 'radial-gradient(#393939, #000000)');
+        //     document.documentElement.style.setProperty('--msger-bg', 'radial-gradient(#393939, #000000)');
+        //     document.documentElement.style.setProperty('--left-msg-bg', '#056162');
+        //     document.documentElement.style.setProperty('--right-msg-bg', '#252d31');
+        //     document.documentElement.style.setProperty('--select-bg', '#2c2c2c');
+        //     document.documentElement.style.setProperty('--tab-btn-active', '#393939');
+        //     document.documentElement.style.setProperty('--settings-bg', 'radial-gradient(#393939, #000000)');
+        //     document.documentElement.style.setProperty('--wb-bg', 'radial-gradient(#393939, #000000)');
+        //     document.documentElement.style.setProperty('--btns-bg-color', 'rgba(0, 0, 0, 0.7)');
+        //     document.body.style.background = 'radial-gradient(#393939, #000000)';
+        //     selectTheme.selectedIndex = 0;
+        //     break;
         case 'dark':
-            swalBackground = 'radial-gradient(#393939, #000000)';
-            document.documentElement.style.setProperty('--body-bg', 'radial-gradient(#393939, #000000)');
-            document.documentElement.style.setProperty('--transcription-bg', 'radial-gradient(#393939, #000000)');
-            document.documentElement.style.setProperty('--msger-bg', 'radial-gradient(#393939, #000000)');
-            document.documentElement.style.setProperty('--left-msg-bg', '#056162');
-            document.documentElement.style.setProperty('--right-msg-bg', '#252d31');
-            document.documentElement.style.setProperty('--select-bg', '#2c2c2c');
-            document.documentElement.style.setProperty('--tab-btn-active', '#393939');
-            document.documentElement.style.setProperty('--settings-bg', 'radial-gradient(#393939, #000000)');
-            document.documentElement.style.setProperty('--wb-bg', 'radial-gradient(#393939, #000000)');
-            document.documentElement.style.setProperty('--btns-bg-color', 'rgba(0, 0, 0, 0.7)');
-            document.body.style.background = 'radial-gradient(#393939, #000000)';
-            selectTheme.selectedIndex = 0;
+            swalBackground = '#33384d';
+
+            // Main backgrounds (flat)
+            document.documentElement.style.setProperty('--body-bg', '#33384d');
+            document.documentElement.style.setProperty('--transcription-bg', '#2c3144');
+            document.documentElement.style.setProperty('--msger-bg', '#2c3144');
+            document.documentElement.style.setProperty('--settings-bg', '#2c3144');
+            document.documentElement.style.setProperty('--wb-bg', '#2c3144');
+
+            // Chat bubbles
+            document.documentElement.style.setProperty('--left-msg-bg', '#40465c');
+            document.documentElement.style.setProperty('--right-msg-bg', '#009c73'); // accent for own messages
+
+            // UI controls
+            document.documentElement.style.setProperty('--select-bg', '#40465c');
+            document.documentElement.style.setProperty('--tab-btn-active', '#009c73');
+
+            // Buttons container background
+            document.documentElement.style.setProperty('--btns-bg-color', '#2c3144');
+
+            // Body
+            document.body.style.background = '#33384d';
+
+            selectTheme.selectedIndex = 5;
             break;
+
         case 'grey':
             swalBackground = 'radial-gradient(#666, #333)';
             document.documentElement.style.setProperty('--body-bg', 'radial-gradient(#666, #333)');
