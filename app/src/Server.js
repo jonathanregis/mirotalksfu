@@ -286,6 +286,7 @@ function OIDCAuth(req, res, next) {
 
 function startServer() {
     // Start the app
+    app.use('/vendor', express.static(path.join(__dirname, 'public/vendor')));
     app.use(cors(corsOptions));
     app.use(compression());
     app.use(express.json());
