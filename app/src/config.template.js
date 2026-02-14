@@ -302,7 +302,7 @@ module.exports = {
                 whiteboardButton: true,
                 emojiRoomButton: true,
                 settingsButton: true,
-                aboutButton: true, // Please keep me always visible, thank you!
+                aboutButton: false, // Please keep me always visible, thank you!
                 exitButton: true,
             },
             settings: {
@@ -354,9 +354,9 @@ module.exports = {
                 chatMaxButton: true,
                 chatSaveButton: true,
                 chatEmojiButton: true,
-                chatMarkdownButton: true,
+                chatMarkdownButton: false,
                 chatSpeechStartButton: true,
-                chatGPT: true,
+                chatGPT: false,
             },
             participantsList: {
                 saveInfoButton: true, // presenter
@@ -378,7 +378,7 @@ module.exports = {
             Umami: https://github.com/umami-software/umami
             We use our Self-hosted Umami to track aggregated usage statistics in order to improve our service.
         */
-        enabled: true,
+        enabled: false,
         src: 'https://stats.mirotalk.com/script.js',
         id: '41d26670-f275-45bb-af82-3ce91fe57756',
     },
@@ -449,13 +449,13 @@ module.exports = {
                 // { protocol: 'tcp', ip: '0.0.0.0', announcedAddress: IPv4, port: 40000 },
                 {
                     protocol: 'udp',
-                    ip: '0.0.0.0',
+                    ip: '10.122.124.147',
                     announcedAddress: IPv4,
                     portRange: { min: 40000, max: 40000 + numWorkers },
                 },
                 {
                     protocol: 'tcp',
-                    ip: '0.0.0.0',
+                    ip: '10.122.124.147',
                     announcedAddress: IPv4,
                     portRange: { min: 40000, max: 40000 + numWorkers },
                 },
@@ -468,13 +468,13 @@ module.exports = {
                 // { protocol: 'tcp', ip: IPv4, portRange: { min: 40000, max: 40100 } },
                 {
                     protocol: 'udp',
-                    ip: '0.0.0.0',
+                    ip: '10.122.124.147',
                     announcedAddress: IPv4,
                     portRange: { min: 40000, max: 40100 },
                 },
                 {
                     protocol: 'tcp',
-                    ip: '0.0.0.0',
+                    ip: '10.122.124.147',
                     announcedAddress: IPv4,
                     portRange: { min: 40000, max: 40100 },
                 },
