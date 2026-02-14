@@ -4,123 +4,148 @@
 // NEW ROOM
 // ####################################################################
 
-const adjectives = [
-    'small',
-    'big',
-    'large',
-    'smelly',
-    'new',
-    'happy',
-    'shiny',
-    'old',
-    'clean',
-    'nice',
-    'bad',
-    'cool',
-    'hot',
-    'cold',
-    'warm',
-    'hungry',
-    'slow',
-    'fast',
-    'red',
-    'white',
-    'black',
-    'blue',
-    'green',
-    'basic',
-    'strong',
-    'cute',
-    'poor',
-    'nice',
-    'huge',
-    'rare',
-    'lucky',
-    'weak',
-    'tall',
-    'short',
-    'tiny',
-    'great',
-    'long',
-    'single',
-    'rich',
-    'young',
-    'dirty',
-    'fresh',
-    'brown',
-    'dark',
-    'crazy',
-    'sad',
-    'loud',
-    'brave',
-    'calm',
-    'silly',
-    'smart',
-];
-
-const nouns = [
-    'dog',
-    'bat',
-    'wrench',
-    'apple',
-    'pear',
-    'ghost',
-    'cat',
-    'wolf',
-    'squid',
-    'goat',
-    'snail',
-    'hat',
-    'sock',
-    'plum',
-    'bear',
-    'snake',
-    'turtle',
-    'horse',
-    'spoon',
-    'fork',
-    'spider',
-    'tree',
-    'chair',
-    'table',
-    'couch',
-    'towel',
-    'panda',
-    'bread',
-    'grape',
-    'cake',
-    'brick',
-    'rat',
-    'mouse',
-    'bird',
-    'oven',
-    'phone',
-    'photo',
-    'frog',
-    'bear',
-    'camel',
-    'sheep',
-    'shark',
-    'tiger',
-    'zebra',
-    'duck',
-    'eagle',
-    'fish',
-    'kitten',
-    'lobster',
-    'monkey',
-    'owl',
-    'puppy',
-    'pig',
-    'rabbit',
-    'fox',
-    'whale',
-    'beaver',
-    'gorilla',
-    'lizard',
-    'parrot',
-    'sloth',
-    'swan',
+const africanCities = [
+  // Algeria
+  "Algiers", "Oran", "Constantine",
+  // Angola
+  "Luanda", "Huambo", "Benguela",
+  // Benin
+  "Cotonou", "Porto-Novo", "Parakou",
+  // Botswana
+  "Gaborone", "Francistown", "Maun",
+  // Burkina Faso
+  "Ouagadougou", "Bobo-Dioulasso", "Koudougou",
+  // Burundi
+  "Bujumbura", "Gitega", "Muyinga",
+  // Cabo Verde
+  "Praia", "Mindelo", "Santa Maria",
+  // Cameroon
+  "Yaoundé", "Douala", "Garoua",
+  // Central African Republic
+  "Bangui", "Bimbo", "Berbérati",
+  // Chad
+  "N'Djamena", "Moundou", "Sarh",
+  // Comoros
+  "Moroni", "Mitsamiouli", "Fomboni",
+  // Congo (Brazzaville)
+  "Brazzaville", "Pointe-Noire", "Dolisie",
+  "Nkayi",
+  "Ouesso",
+  "Owando",
+  "Impfondo",
+  "Loandjili",
+  "Gamboma",
+  "Ewo",
+  "Mossaka",
+  "Oyo",
+  "Makoua",
+  "Sibiti",
+  "Kinkala",
+  "Lekana",
+  "Loubomo",
+  "Madingou",
+  "Mossendjo",
+  "Moembe",
+  "Fleuve-Congo",
+  "Alima",
+  "Sangha",
+  "Kouilou",
+  "Ogooue",
+  "Likouala",
+  "Mayombe",
+  "Ntokou-Pikounda",
+  "OdzalaKokoua",
+  "Lefini",
+  "ConkouatiDouli",
+  "TchiambaNzassi",
+  "Lefini",
+  "Itanga",
+  "Bateke",
+  "Ngombe",
+  // Congo (Kinshasa)
+  "Kinshasa", "Lubumbashi", "Mbuji-Mayi",
+  // Djibouti
+  "Djibouti", "Ali-Sabieh", "Tadjoura",
+  // Egypt
+  "Cairo", "Alexandria", "Giza",
+  // Equatorial Guinea
+  "Malabo", "Bata", "Ebebiyin",
+  // Eritrea
+  "Asmara", "Keren", "Massawa",
+  // Eswatini
+  "Mbabane", "Manzini", "Lobamba",
+  // Ethiopia
+  "Addis Ababa", "Dire-Dawa", "Mekelle",
+  // Gabon
+  "Libreville", "Port-Gentil", "Franceville",
+  // The Gambia
+  "Banjul", "Serrekunda", "Brikama",
+  // Ghana
+  "Accra", "Kumasi", "Tamale",
+  // Guinea
+  "Conakry", "Nzerekore", "Kankan",
+  // Guinea-Bissau
+  "Bissau", "Bafata", "Gabu",
+  // Ivory Coast
+  "Abidjan", "Yamoussoukro", "Bouake",
+  // Kenya
+  "Nairobi", "Mombasa", "Kisumu",
+  // Lesotho
+  "Maseru", "Teyateyaneng", "Mafeteng",
+  // Liberia
+  "Monrovia", "Gbarnga", "Bensonville",
+  // Libya
+  "Tripoli", "Benghazi", "Misrata",
+  // Madagascar
+  "Antananarivo", "Toamasina", "Fianarantsoa",
+  // Malawi
+  "Lilongwe", "Blantyre", "Mzuzu",
+  // Mali
+  "Bamako", "Sikasso", "Timbuktu",
+  // Mauritania
+  "Nouakchott", "Nouadhibou", "Kiffa",
+  // Mauritius
+  "Port-Louis", "Beau-Bassin-Rose-Hill", "Vacoas-Phoenix",
+  // Morocco
+  "Rabat", "Casablanca", "Marrakech",
+  // Mozambique
+  "Maputo", "Matola", "Beira",
+  // Namibia
+  "Windhoek", "Swakopmund", "Walvis-Bay",
+  // Niger
+  "Niamey", "Zinder", "Maradi",
+  // Nigeria
+  "Lagos", "Abuja", "Kano",
+  // Rwanda
+  "Kigali", "Butare", "Gisenyi",
+  // São Tomé and Príncipe
+  "Sao-Tome", "Santana", "Trindade",
+  // Senegal
+  "Dakar", "Thies", "Saint-Louis",
+  // Seychelles
+  "Victoria", "Anse Royale", "Beau-Vallon",
+  // Sierra Leone
+  "Freetown", "Bo", "Kenema",
+  // Somalia
+  "Mogadishu", "Hargeisa", "Bosaso",
+  // South Africa
+  "Johannesburg", "Cape-Town", "Durban",
+  // South Sudan
+  "Juba", "Malakal", "Wau",
+  // Sudan
+  "Khartoum", "Omdurman", "Port-Sudan",
+  // Tanzania
+  "Dodoma", "Dar-es-Salaam", "Mwanza",
+  // Togo
+  "Lome", "Sokode", "Kara",
+  // Tunisia
+  "Tunis", "Sfax", "Sousse",
+  // Uganda
+  "Kampala", "Gulu", "Mbarara",
+  // Zambia
+  "Lusaka", "Ndola", "Kitwe",
+  // Zimbabwe
+  "Harare", "Bulawayo", "Chitungwiza"
 ];
 
 function getRandomNumber(length) {
@@ -133,18 +158,17 @@ function getRandomNumber(length) {
     return result;
 }
 
-let adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-let noun = nouns[Math.floor(Math.random() * nouns.length)];
-let num = getRandomNumber(5);
-noun = noun.charAt(0).toUpperCase() + noun.substring(1);
-adjective = adjective.charAt(0).toUpperCase() + adjective.substring(1);
-
+function generateAfricanRoomName() {
+    let africanCity = africanCities[Math.floor(Math.random() * africanCities.length)];
+    let num = getRandomNumber(3);
+    return africanCity + num;
+}
 // ####################################################################
 // TYPING EFFECT
 // ####################################################################
 
 let i = 0;
-let txt = num + adjective + noun;
+let txt = generateAfricanRoomName();
 let speed = 100;
 
 function typeWriter() {
@@ -204,7 +228,23 @@ document.getElementById('roomName').onkeyup = (e) => {
 };
 
 function genRoom() {
-    document.getElementById('roomName').value = getUUID4();
+    const roomInput = document.getElementById('roomName');
+    roomInput.value = '';       // clear current value
+
+    // Generate new African-style room name
+    const newRoomName = generateAfricanRoomName();
+
+    // Typing effect
+    let i = 0;
+    function typeWriter() {
+        if (i < newRoomName.length) {
+            roomInput.value += newRoomName.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    typeWriter();
 }
 
 function getUUID4() {
