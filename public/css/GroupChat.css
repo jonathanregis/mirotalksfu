@@ -15,6 +15,7 @@
     height: var(--msger-height);
     min-width: var(--msger-width);
     min-height: var(--msger-height);
+    max-width: 900px !important;
     padding: 3px;
     background: var(--msger-bg);
     border: var(--border);
@@ -116,7 +117,6 @@
     position: relative;
     margin-left: 300px;
     border-left: var(--border);
-    border-radius: 10px;
     /* border: 1px solid lime; */
 }
 
