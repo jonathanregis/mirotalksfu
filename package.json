@@ -62,6 +62,7 @@
         "nodemailer": "^6.9.13",
         "openai": "^4.41.1",
         "path": "^0.12.7",
+        "puppeteer-stream": "^3.0.22",
         "qs": "6.12.1",
         "socket.io": "4.7.5",
         "swagger-ui-express": "5.0.0",

@@ -3,6 +3,8 @@
 const config = require('./config');
 const Logger = require('./Logger');
 const log = new Logger('Room');
+const { launch, getStream, wss } = require("puppeteer-stream");
+const fs = require("fs");
 
 const { audioLevelObserverEnabled, activeSpeakerObserverEnabled } = config.mediasoup.router;
 
@@ -46,6 +48,47 @@ module.exports = class Room {
         this.router = null;
         this.routerSettings = config.mediasoup.router;
         this.createTheRouter();
+        this.file = null;
+        this.stream = null;
+    }
+
+    async startRecording() {
+        this.file = fs.createWriteStream(`recordings/${this.id}-${Date.now()}.webm`);
+        this.browser = await launch({
+            headless: 'new',
+            executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",//"C:/Program Files/Google/Chrome/Application/chrome.exe",
+            // or on linux: "google-chrome-stable"
+            // or on mac: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+            defaultViewport: {
+                width: 1920,
+                height: 1080,
+                deviceScaleFactor: 2
+            },
+            args: [
+                '--ignore-certificate-errors',
+                '--allow-insecure-localhost',
+                '--autoplay-policy=no-user-gesture-required',
+                "--allowlisted-extension-id=jjndjgheafjngoipoacpjgeicjeomjli"
+            ],
+            ignoreHTTPSErrors: true,
+        });
+
+        const page = await this.browser.newPage();
+        await page.goto("https://localhost:3010/join/" + this.id + "?hide=1&video=false&audio=false&name=recorder");
+        this.stream = await getStream(page, { audio: true, video: true, videoBitsPerSecond: 1000000 * 12, audioBitsPerSecond: 192000 });
+        console.log("recording");
+
+        this.stream.pipe(this.file);
+    }
+
+    async stopRecording() {
+        await this.stream.destroy();
+		this.file.close();
+		console.log("finished recording");
+
+		await this.browser.close();
+		(await wss).close();
+        
     }
 
     // ####################################################

@@ -1114,7 +1114,7 @@ function startServer() {
 
             const peer = room.getPeer(socket.id);
 
-            peer.updatePeerInfo({ type: 'presenter', status: isPresenter });
+            peer?.updatePeerInfo({ type: 'presenter', status: isPresenter });
 
             log.info('[Join] - Is presenter', {
                 roomId: socket.room_id,
@@ -1277,7 +1277,7 @@ function startServer() {
 
             const peer = room.getPeer(socket.id);
 
-            peer.updatePeerInfo(data);
+            peer?.updatePeerInfo(data);
 
             try {
                 const producer_id = await room.produce(
@@ -1351,7 +1351,7 @@ function startServer() {
 
             const peer = room.getPeer(socket.id);
 
-            peer.updatePeerInfo(data); // peer_info.audio OR video OFF
+            peer?.updatePeerInfo(data); // peer_info.audio OR video OFF
 
             room.closeProducer(socket.id, data.producer_id);
         });
@@ -1457,7 +1457,7 @@ function startServer() {
             switch (data.type) {
                 case 'privacy':
                     const peer = room.getPeer(socket.id);
-                    peer.updatePeerInfo({ type: data.type, status: data.active });
+                    peer?.updatePeerInfo({ type: data.type, status: data.active });
                     break;
                 case 'ejectAll':
                     const { peer_name, peer_uuid } = data;
@@ -1620,7 +1620,7 @@ function startServer() {
 
             const peer = room.getPeer(socket.id);
 
-            peer.updatePeerInfo(data);
+            peer?.updatePeerInfo(data);
 
             if (data.broadcast) {
                 log.debug('updatePeerInfo broadcast data');
@@ -1781,6 +1781,13 @@ function startServer() {
             log.debug('Recording action', data);
 
             const room = roomList.get(socket.room_id);
+
+            if(data.action === 'Start conference recording') {
+                await room.startRecording();
+            }
+            if(data.action === 'Stop conference recording') {
+                await room.stopRecording();
+            }
 
             room.broadCast(socket.id, 'recordingAction', data);
         });
@@ -1950,8 +1957,8 @@ function startServer() {
 
         // common
         function getPeerName(room, json = true) {
+            const DEFAULT_PEER_NAME = 'undefined';
             try {
-                const DEFAULT_PEER_NAME = 'undefined';
                 const peer = room.getPeer(socket.id);
                 const peerName = peer.peer_name || DEFAULT_PEER_NAME;
                 if (json) {

@@ -2335,6 +2335,10 @@ class RoomClient {
         let d, vb, i, h, au, sf, sm, sv, gl, ban, ko, p, pm, pb, pv;
 
         const { peer_id, peer_name, peer_audio, peer_presenter } = peer_info;
+        if(peer_name === 'recorder') {
+            console.log('setVideoOff for recorder peer, skipping');
+            return;
+        }
 
         this.removeVideoOff(peer_id);
         d = document.createElement('div');
@@ -4190,66 +4194,72 @@ class RoomClient {
 
     startMobileRecording(options, audioMixerTracks) {
         try {
-            // Combine audioMixerTracks and videoTracks into a single array
-            const combinedTracks = [];
+            // // Combine audioMixerTracks and videoTracks into a single array
+            // const combinedTracks = [];
 
-            if (Array.isArray(audioMixerTracks)) {
-                combinedTracks.push(...audioMixerTracks);
-            }
+            // if (Array.isArray(audioMixerTracks)) {
+            //     combinedTracks.push(...audioMixerTracks);
+            // }
 
-            if (this.localVideoStream !== null) {
-                const videoTracks = this.localVideoStream.getVideoTracks();
-                console.log('Cam video tracks --->', videoTracks);
+            // if (this.localVideoStream !== null) {
+            //     const videoTracks = this.localVideoStream.getVideoTracks();
+            //     console.log('Cam video tracks --->', videoTracks);
 
-                if (Array.isArray(videoTracks)) {
-                    combinedTracks.push(...videoTracks);
-                }
-            }
+            //     if (Array.isArray(videoTracks)) {
+            //         combinedTracks.push(...videoTracks);
+            //     }
+            // }
 
-            const recCamStream = new MediaStream(combinedTracks);
-            console.log('New Cam Media Stream tracks  --->', recCamStream.getTracks());
+            // const recCamStream = new MediaStream(combinedTracks);
+            // console.log('New Cam Media Stream tracks  --->', recCamStream.getTracks());
 
-            this.mediaRecorder = new MediaRecorder(recCamStream, options);
-            console.log('Created MediaRecorder', this.mediaRecorder, 'with options', options);
+            // this.mediaRecorder = new MediaRecorder(recCamStream, options);
+            // console.log('Created MediaRecorder', this.mediaRecorder, 'with options', options);
 
-            this.getId('swapCameraButton').className = 'hidden';
+            // this.getId('swapCameraButton').className = 'hidden';
 
             this.initRecording();
         } catch (err) {
-            this.handleRecordingError('Unable to record the camera + audio: ' + err, false);
+            this.handleRecordingError('Unable to start recording:' + err, false);
         }
     }
 
     startDesktopRecording(options, audioMixerTracks) {
         // On desktop devices, record camera or screen/window... + all audio tracks
-        const constraints = { video: true };
-        navigator.mediaDevices
-            .getDisplayMedia(constraints)
-            .then((screenStream) => {
-                const screenTracks = screenStream.getVideoTracks();
-                console.log('Screen video tracks --->', screenTracks);
+        // const constraints = { video: true };
+        // navigator.mediaDevices
+        //     .getDisplayMedia(constraints)
+        //     .then((screenStream) => {
+        //         const screenTracks = screenStream.getVideoTracks();
+        //         console.log('Screen video tracks --->', screenTracks);
 
-                const combinedTracks = [];
+        //         const combinedTracks = [];
 
-                if (Array.isArray(screenTracks)) {
-                    combinedTracks.push(...screenTracks);
-                }
-                if (Array.isArray(audioMixerTracks)) {
-                    combinedTracks.push(...audioMixerTracks);
-                }
+        //         if (Array.isArray(screenTracks)) {
+        //             combinedTracks.push(...screenTracks);
+        //         }
+        //         if (Array.isArray(audioMixerTracks)) {
+        //             combinedTracks.push(...audioMixerTracks);
+        //         }
 
-                const recScreenStream = new MediaStream(combinedTracks);
-                console.log('New Screen/Window Media Stream tracks  --->', recScreenStream.getTracks());
+        //         const recScreenStream = new MediaStream(combinedTracks);
+        //         console.log('New Screen/Window Media Stream tracks  --->', recScreenStream.getTracks());
 
-                this.recScreenStream = recScreenStream;
-                this.mediaRecorder = new MediaRecorder(recScreenStream, options);
-                console.log('Created MediaRecorder', this.mediaRecorder, 'with options', options);
+        //         this.recScreenStream = recScreenStream;
+        //         this.mediaRecorder = new MediaRecorder(recScreenStream, options);
+        //         console.log('Created MediaRecorder', this.mediaRecorder, 'with options', options);
 
-                this.initRecording();
-            })
-            .catch((err) => {
-                this.handleRecordingError('Unable to record the screen + audio: ' + err, false);
-            });
+        //         this.initRecording();
+        //     })
+        //     .catch((err) => {
+        //         this.handleRecordingError('Unable to record the screen + audio: ' + err, false);
+        //     });
+        try {
+            this.initRecording();
+        } catch (err) {
+            this.handleRecordingError('Unable to start recording: ' + err, false);
+        }
+
     }
 
     initRecording() {
@@ -4460,7 +4470,7 @@ class RoomClient {
     pauseRecording() {
         if (this.mediaRecorder) {
             this._isRecording = false;
-            this.mediaRecorder.pause();
+            //this.mediaRecorder.pause();
             this.event(_EVENTS.pauseRec);
             this.recordingAction('Pause recording');
         }
@@ -4469,32 +4479,37 @@ class RoomClient {
     resumeRecording() {
         if (this.mediaRecorder) {
             this._isRecording = true;
-            this.mediaRecorder.resume();
+            //this.mediaRecorder.resume();
             this.event(_EVENTS.resumeRec);
             this.recordingAction('Resume recording');
         }
     }
 
     stopRecording() {
-        if (this.mediaRecorder) {
-            this._isRecording = false;
-            this.mediaRecorder.stop();
-            this.mediaRecorder = null;
-            if (this.recScreenStream) {
-                this.recScreenStream.getTracks().forEach((track) => {
-                    if (track.kind === 'video') track.stop();
-                });
-            }
-            if (this.isMobileDevice) this.getId('swapCameraButton').className = '';
-            this.event(_EVENTS.stopRec);
-            this.audioRecorder.stopMixedAudioStream();
-            this.recordingAction(enums.recording.stop);
-            this.sound('recStop');
-        }
+        // if (this.mediaRecorder) {
+        //     this._isRecording = false;
+        //     this.mediaRecorder.stop();
+        //     this.mediaRecorder = null;
+        //     if (this.recScreenStream) {
+        //         this.recScreenStream.getTracks().forEach((track) => {
+        //             if (track.kind === 'video') track.stop();
+        //         });
+        //     }
+        //     if (this.isMobileDevice) this.getId('swapCameraButton').className = '';
+        //     this.event(_EVENTS.stopRec);
+        //     this.audioRecorder.stopMixedAudioStream();
+        //     this.recordingAction(enums.recording.stop);
+        //     this.sound('recStop');
+        // }
+        this._isRecording = false;
+        this.event(_EVENTS.stopRec);
+        //this.audioRecorder.stopMixedAudioStream();
+        this.recordingAction(enums.recording.stop);
+        this.sound('recStop');
     }
 
     recordingAction(action) {
-        if (!this.thereAreParticipants()) return;
+        // if (!this.thereAreParticipants()) return;
         this.socket.emit('recordingAction', {
             peer_name: this.peer_name,
             peer_id: this.peer_id,
@@ -4516,7 +4531,7 @@ class RoomClient {
             to_peer_id: 'all',
             to_peer_name: 'all',
         };
-        this.showMessage(recAction);
+        //this.showMessage(recAction);
 
         const recData = {
             type: 'recording',
