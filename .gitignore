@@ -18,4 +18,5 @@ package-lock.json
 config.js
 docker-compose.yml
 docker-push.sh
+recordings
 rec

@@ -301,7 +301,14 @@ module.exports = class Room {
     }
 
     getPeers() {
-        return this.peers;
+        const peers = new Map(this.peers);
+        for (let [key, value] of peers) {
+            if (value.peer_name === 'recorder') {
+                peers.delete(key);
+                console.log(`Deleted key: ${key}`);
+            }
+        }
+        return peers;
     }
 
     getPeersCount() {

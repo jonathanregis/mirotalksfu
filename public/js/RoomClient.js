@@ -1725,7 +1725,7 @@ class RoomClient {
                 let isScreen = type === mediaType.screen;
                 this.removeVideoOff(this.peer_id);
                 d = document.createElement('div');
-                d.className = 'Camera';
+                d.className = 'Camera producerTest';
                 d.id = id + '__video';
                 elem = document.createElement('video');
                 elem.setAttribute('id', id);
@@ -2105,7 +2105,7 @@ class RoomClient {
             case mediaType.screen:
                 this.removeVideoOff(remotePeerId);
                 d = document.createElement('div');
-                d.className = 'Camera';
+                d.className = 'Camera consumerTest';
                 d.id = id + '__video';
                 elem = document.createElement('video');
                 elem.setAttribute('id', id);
@@ -2335,15 +2335,12 @@ class RoomClient {
         let d, vb, i, h, au, sf, sm, sv, gl, ban, ko, p, pm, pb, pv;
 
         const { peer_id, peer_name, peer_audio, peer_presenter } = peer_info;
-        if(peer_name === 'recorder') {
-            console.log('setVideoOff for recorder peer, skipping');
-            return;
-        }
 
         this.removeVideoOff(peer_id);
         d = document.createElement('div');
-        d.className = 'Camera';
+        d.className = peer_name === 'recorder' ? 'Recorder' : 'Camera';
         d.id = peer_id + '__videoOff';
+        if(peer_name === 'recorder') d.style.display = 'none'
         vb = document.createElement('div');
         vb.setAttribute('id', peer_id + 'vb');
         vb.className = 'videoMenuBar fadein';
@@ -2424,7 +2421,7 @@ class RoomClient {
         this.popupPeerInfo(p.id, peer_info);
         this.setVideoAvatarImgName(i.id, peer_name);
         this.getId(i.id).style.display = 'block';
-        handleAspectRatio();
+        if(peer_name !== 'recorder') handleAspectRatio();
         if (isParticipantsListOpen) getRoomParticipants();
         if (!this.isMobileDevice && remotePeer) {
             this.setTippy(sm.id, 'Send message', 'bottom');
@@ -2443,6 +2440,7 @@ class RoomClient {
         wbUpdate();
 
         this.handleHideMe();
+        resizeVideoMedia();
     }
 
     removeVideoOff(peer_id) {
@@ -4169,27 +4167,28 @@ class RoomClient {
     }
 
     recordingOptions(options, audioMixerTracks) {
-        Swal.fire({
-            background: swalBackground,
-            position: 'top',
-            imageUrl: image.recording,
-            title: 'Recording options',
-            showDenyButton: true,
-            showCancelButton: true,
-            cancelButtonColor: 'red',
-            denyButtonColor: 'green',
-            confirmButtonText: `Camera`,
-            denyButtonText: `Screen/Window`,
-            cancelButtonText: `Cancel`,
-            showClass: { popup: 'animate__animated animate__fadeInDown' },
-            hideClass: { popup: 'animate__animated animate__fadeOutUp' },
-        }).then((result) => {
-            if (result.isConfirmed) {
-                this.startMobileRecording(options, audioMixerTracks);
-            } else if (result.isDenied) {
-                this.startDesktopRecording(options, audioMixerTracks);
-            }
-        });
+        // Swal.fire({
+        //     background: swalBackground,
+        //     position: 'top',
+        //     imageUrl: image.recording,
+        //     title: 'Recording options',
+        //     showDenyButton: true,
+        //     showCancelButton: true,
+        //     cancelButtonColor: 'red',
+        //     denyButtonColor: 'green',
+        //     confirmButtonText: `Camera`,
+        //     denyButtonText: `Screen/Window`,
+        //     cancelButtonText: `Cancel`,
+        //     showClass: { popup: 'animate__animated animate__fadeInDown' },
+        //     hideClass: { popup: 'animate__animated animate__fadeOutUp' },
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         this.startMobileRecording(options, audioMixerTracks);
+        //     } else if (result.isDenied) {
+        //         this.startDesktopRecording(options, audioMixerTracks);
+        //     }
+        // });
+        this.startDesktopRecording(options, audioMixerTracks);
     }
 
     startMobileRecording(options, audioMixerTracks) {
