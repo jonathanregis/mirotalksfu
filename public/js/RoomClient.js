@@ -4058,14 +4058,15 @@ class RoomClient {
     speechMessage(newMsg = true, from, msg) {
         const speech = new SpeechSynthesisUtterance();
         speech.text = (newMsg ? 'New' : '') + ' message from:' + from + '. The message is:' + msg;
-        speech.rate = 0.9;
+        speech.rate = 1;
         window.speechSynthesis.speak(speech);
     }
 
     speechText(msg) {
         const speech = new SpeechSynthesisUtterance();
         speech.text = msg;
-        speech.rate = 0.9;
+        speech.rate = 1.1;
+        speech.pitch = 1.1;
         window.speechSynthesis.speak(speech);
     }
 

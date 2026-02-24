@@ -50,6 +50,7 @@ module.exports = class Room {
         this.createTheRouter();
         this.file = null;
         this.stream = null;
+        this.isRecording = false;
     }
 
     async startRecording() {
@@ -72,6 +73,7 @@ module.exports = class Room {
             ],
             ignoreHTTPSErrors: true,
         });
+        this.isRecording = true
 
         const page = await this.browser.newPage();
         await page.goto("https://localhost:3010/join/" + this.id + "?hide=1&video=false&audio=false&name=recorder");
@@ -82,13 +84,13 @@ module.exports = class Room {
     }
 
     async stopRecording() {
-        await this.stream.destroy();
-		this.file.close();
+        await this.stream?.destroy();
+		this.file?.close();
 		console.log("finished recording");
 
-		await this.browser.close();
-		(await wss).close();
-        
+		await this.browser?.close();
+		(await wss)?.close();
+        this.isRecording = false;
     }
 
     // ####################################################
